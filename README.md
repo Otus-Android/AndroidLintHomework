@@ -1,5 +1,4 @@
 ## Напишите следующие правила для Android Lint:
-
 1. Если используется GlobalScope сообщите об инциденте. `Severity.WARNING`
     * Если мы находимся внутри класса-наследника ViewModel и в класспасе есть
       экстеншен `viewModelScope` (*androidx.lifecycle:lifecycle-viewmodel-ktx*), то в
