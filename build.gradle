@@ -1,16 +1,37 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext{
+
+        detekt_version = '1.20.0'
+            kotlinVersion = '1.6.21'
+            // Current release: Chipmunk / AGP 7.2
+            gradlePluginVersion = '7.0.2'
+            lintVersion = '30.2.0'
+            // lintVersion = '30.2.0-rc02'
+            // Upcoming lint target: Dolphin / AGP 7.3
+            // gradlePluginVersion = '7.3.0-beta01'
+            // lintVersion = '30.3.0-beta01'
+            // Upcoming lint target: Electric Eel / AGP 7.4
+            // gradlePluginVersion = '7.4.0-alpha02'
+            // lintVersion = '30.4.0-alpha02'
+        }
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_version"
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+}
+allprojects {
+    apply from: "$rootDir/detekt.gradle"
 }
 
 task clean(type: Delete) {
